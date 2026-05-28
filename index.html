@@ -150,14 +150,13 @@ nav.main .nav-center .nav-dropdown-menu a:hover {
   background-size: cover;
   background-position: center 30%;
   z-index: 0;
-  filter: grayscale(55%) contrast(0.95);
 }
 .hero .hero-bg:after {
   content: '';
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(180deg, rgba(245,241,232,0.92) 0%, rgba(245,241,232,0.82) 40%, rgba(245,241,232,0.78) 100%);
+    linear-gradient(180deg, rgba(245,241,232,0.65) 0%, rgba(245,241,232,0.45) 50%, rgba(245,241,232,0.55) 100%);
 }
 
 .hero-status {
@@ -331,21 +330,23 @@ nav.main .nav-center .nav-dropdown-menu a:hover {
 .section-num {
   display: inline-block;
   font-family: 'DM Mono', monospace;
-  font-size: 13px;
-  letter-spacing: 0.15em;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--green-deep);
   margin-bottom: 24px;
 }
 .section-title {
   font-family: 'Oswald', sans-serif;
-  font-size: clamp(52px, 7.5vw, 104px);
-  line-height: 0.92;
+  font-size: clamp(54px, 7.8vw, 110px);
+  line-height: 0.9;
   text-transform: uppercase;
-  font-weight: 500;
-  letter-spacing: -0.015em;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--ink);
 }
-.section-title .accent { color: var(--green-deep); font-weight: 600; }
+.section-title .accent { color: var(--green-deep); font-weight: 700; }
 .section-sub {
   font-size: 19px;
   color: var(--ink-soft);
@@ -723,9 +724,11 @@ nav.main .nav-center .nav-dropdown-menu a:hover {
   display: flex;
   flex-direction: column;
   min-height: 360px;
-  transition: background 0.25s;
+  transition: background 0.25s, transform 0.25s;
+  text-decoration: none;
+  color: var(--ink);
 }
-.loc-card:hover { background: var(--green); }
+.loc-card:hover { background: var(--green); transform: translateY(-3px); }
 .loc-card .status {
   font-family: 'DM Mono', monospace;
   font-size: 12px;
@@ -1105,6 +1108,31 @@ footer {
   .nav-toggle { display: flex !important; justify-self: end; }
   .mobile-menu.open { display: flex !important; }
   .hero { padding: 40px 18px 60px; }
+  .hero-status {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    padding: 12px 0 16px;
+    margin-bottom: 40px;
+  }
+  .hero-status .status-left {
+    flex-wrap: wrap;
+    gap: 8px 12px;
+    align-items: center;
+  }
+  .hero-status .status-locs {
+    width: 100%;
+    color: var(--ink-soft);
+    letter-spacing: 0.06em;
+  }
+  .hero-status .status-right {
+    flex-wrap: wrap;
+    gap: 10px 16px;
+    width: 100%;
+    font-size: 10.5px;
+  }
   .hero-title { margin-bottom: 36px; }
   .hero-logo { height: 48px; margin-bottom: 22px; }
   .hero-title h1 { font-size: clamp(44px, 12vw, 78px); }
@@ -1542,7 +1570,7 @@ footer {
   <h2 class="section-title">Three rooms. <span class="accent">Same care.</span></h2>
 
   <div class="loc-grid">
-    <div class="loc-card">
+    <a href="https://outlook.office.com/book/TheATRDesMoines2@theathletictrainer.com/?ismsaljsauthenabled" target="_blank" class="loc-card">
       <div class="status">Now Booking</div>
       <h3>Des Moines</h3>
       <address>
@@ -1551,8 +1579,8 @@ footer {
         (515) 964-5000
       </address>
       <div class="book-link"><span>Schedule a Visit</span><span class="val">→</span></div>
-    </div>
-    <div class="loc-card">
+    </a>
+    <a href="https://outlook.office.com/book/TheATRWaukee@theathletictrainer.com/?ismsaljsauthenabled" target="_blank" class="loc-card">
       <div class="status">Now Booking</div>
       <h3>Waukee</h3>
       <address>
@@ -1561,8 +1589,8 @@ footer {
         (515) 964-5000
       </address>
       <div class="book-link"><span>Schedule a Visit</span><span class="val">→</span></div>
-    </div>
-    <div class="loc-card coming">
+    </a>
+    <a href="mailto:ATRankeny@gmail.com?subject=Indianola%20Updates" class="loc-card coming">
       <div class="status">Coming Soon</div>
       <h3>Indianola</h3>
       <address>
@@ -1571,7 +1599,7 @@ footer {
         (515) 964-5000
       </address>
       <div class="book-link"><span>Stay Updated</span><span class="val">→</span></div>
-    </div>
+    </a>
   </div>
 </section>
 
