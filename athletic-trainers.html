@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Athletic Training Room — Editorial</title>
+<title>Athletic Trainers | The Athletic Training Room</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -140,24 +140,6 @@ nav.main .nav-center .nav-dropdown-menu a:hover {
   padding: 70px 32px 80px;
   position: relative;
   background: var(--paper);
-  overflow: hidden;
-  isolation: isolate;
-}
-.hero > *:not(.hero-bg) { position: relative; z-index: 1; }
-.hero .hero-bg {
-  position: absolute;
-  inset: 0;
-  background-size: cover;
-  background-position: center 30%;
-  z-index: 0;
-  filter: grayscale(55%) contrast(0.95);
-}
-.hero .hero-bg:after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(180deg, rgba(245,241,232,0.92) 0%, rgba(245,241,232,0.82) 40%, rgba(245,241,232,0.78) 100%);
 }
 
 .hero-status {
@@ -1167,6 +1149,306 @@ footer {
   .foot-grid > div:first-child { grid-column: 1 / -1; }
   .foot-bottom { flex-direction: column; gap: 10px; text-align: center; margin-top: 36px; }
 }
+
+/* ========= SUBPAGE ========= */
+.hero-crumb {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 40px;
+}
+.hero-crumb a { color: var(--ink-soft); transition: color 0.2s; }
+.hero-crumb a:hover { color: var(--green-deep); }
+.hero-crumb .sep { color: rgba(20,20,15,0.3); }
+.hero-crumb .current { color: var(--ink); }
+.hero-eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--green-deep);
+  margin-bottom: 28px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+.hero-eyebrow:before { content: ''; width: 32px; height: 1px; background: var(--green-deep); }
+
+.subpage { padding: 130px 32px; background: var(--paper); }
+.subpage-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  margin-bottom: 100px;
+}
+.sub-col {
+  background: var(--paper-2);
+  border: 2px solid var(--ink);
+  padding: 40px 36px;
+}
+.sub-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--green-deep);
+  margin-bottom: 18px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.sub-label:before { content: ''; width: 24px; height: 1px; background: var(--green-deep); }
+.sub-col h2, .sub-feature-text h2 {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 500;
+  font-size: clamp(34px, 4vw, 52px);
+  line-height: 0.95;
+  letter-spacing: -0.015em;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+.sub-col h2 .accent, .sub-feature-text h2 .accent { color: var(--green-deep); font-weight: 600; }
+.sub-col p, .sub-feature-text p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  margin-bottom: 18px;
+}
+.sub-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 24px 0;
+}
+.sub-list li {
+  padding: 14px 0 14px 28px;
+  border-bottom: 1px solid var(--rule);
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--ink);
+  position: relative;
+}
+.sub-list li:before {
+  content: '+';
+  position: absolute;
+  left: 0; top: 14px;
+  color: var(--green-deep);
+  font-family: 'Oswald', sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 1;
+}
+.sub-list li:last-child { border-bottom: none; }
+.sub-list.compact li { padding: 10px 0 10px 24px; font-size: 14px; }
+.sub-list.compact li:before { top: 10px; font-size: 15px; }
+
+.sub-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink);
+  border: 1.5px solid var(--ink);
+  padding: 12px 18px;
+  transition: all 0.2s;
+  margin-top: 8px;
+  text-decoration: none;
+}
+.sub-cta:hover { background: var(--ink); color: var(--green); }
+.sub-cta .arrow { transition: transform 0.2s; }
+.sub-cta:hover .arrow { transform: translateX(4px); }
+
+.sub-feature {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 2px solid var(--ink);
+  margin-bottom: 100px;
+  background: var(--paper);
+}
+.sub-feature-img {
+  min-height: 520px;
+  background-size: cover;
+  background-position: center;
+  border-right: 2px solid var(--ink);
+}
+.sub-feature-text {
+  padding: 60px 44px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.sub-feature-text .sub-closing {
+  margin-top: 16px;
+  padding-top: 24px;
+  border-top: 1px solid var(--rule);
+  font-style: italic;
+  font-size: 15px;
+}
+
+.sub-strip {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 2px solid var(--ink);
+}
+.sub-strip-col {
+  padding: 40px 36px;
+}
+.sub-strip-col:first-child { border-right: 2px solid var(--ink); }
+.sub-strip-col h3 {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 500;
+  font-size: clamp(26px, 3vw, 36px);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  line-height: 1;
+  letter-spacing: -0.005em;
+}
+.sub-strip-col p {
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  margin-bottom: 18px;
+}
+
+.ceu-list { display: flex; flex-direction: column; gap: 20px; }
+.ceu-item {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 24px;
+  padding: 18px 0;
+  border-top: 1px solid var(--rule);
+}
+.ceu-item:last-child { border-bottom: 1px solid var(--rule); }
+.ceu-date {
+  font-family: 'Oswald', sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  color: var(--green-deep);
+  line-height: 1;
+}
+.ceu-info h4 {
+  font-family: 'Oswald', sans-serif;
+  font-size: 22px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: -0.005em;
+  line-height: 1.05;
+  margin-bottom: 6px;
+}
+.ceu-info p {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 10px;
+}
+
+.sub-final {
+  margin-top: 80px;
+  padding: 60px 40px;
+  border: 2px solid var(--ink);
+  background: var(--ink);
+  color: var(--paper);
+  text-align: center;
+}
+.sub-final p {
+  font-size: 18px;
+  line-height: 1.5;
+  margin-bottom: 28px;
+  color: rgba(245,241,232,0.85);
+}
+.sub-final p a { color: var(--green); }
+.sub-cta-big {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: 'DM Mono', monospace;
+  font-size: 14px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: var(--green);
+  color: var(--ink);
+  padding: 18px 28px;
+  border: 2px solid var(--green);
+  transition: all 0.2s;
+  text-decoration: none;
+}
+.sub-cta-big:hover { background: var(--paper); border-color: var(--paper); }
+.sub-cta-big .arrow { transition: transform 0.2s; }
+.sub-cta-big:hover .arrow { transform: translateX(4px); }
+
+@media (max-width: 1100px) {
+  .subpage-grid { grid-template-columns: 1fr; gap: 24px; }
+  .sub-feature { grid-template-columns: 1fr; }
+  .sub-feature-img { border-right: none; border-bottom: 2px solid var(--ink); min-height: 360px; }
+  .sub-feature-text { padding: 40px 28px; }
+  .sub-strip { grid-template-columns: 1fr; }
+  .sub-strip-col:first-child { border-right: none; border-bottom: 2px solid var(--ink); }
+}
+@media (max-width: 900px) {
+  .subpage { padding: 70px 18px; }
+  .hero-crumb { font-size: 10px; gap: 6px; flex-wrap: wrap; margin-bottom: 24px; }
+  .sub-col, .sub-strip-col { padding: 28px 22px; }
+  .sub-col h2, .sub-feature-text h2 { font-size: clamp(28px, 8vw, 40px); }
+  .sub-feature-text { padding: 32px 22px; }
+  .sub-final { padding: 40px 22px; margin-top: 50px; }
+  .sub-final p { font-size: 16px; }
+}
+
+/* Subpage hero with photo background */
+.hero.subpage-hero {
+  position: relative;
+  color: var(--paper);
+  overflow: hidden;
+  isolation: isolate;
+  padding-top: 90px;
+  padding-bottom: 100px;
+}
+.hero.subpage-hero .hero-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  z-index: -2;
+  filter: grayscale(35%) contrast(0.98);
+}
+.hero.subpage-hero .hero-bg:after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(20,20,15,0.55) 0%, rgba(20,20,15,0.7) 50%, rgba(20,20,15,0.88) 100%);
+}
+/* Override text colors for legibility on photo */
+.hero.subpage-hero .hero-crumb { color: rgba(245,241,232,0.7); }
+.hero.subpage-hero .hero-crumb a { color: rgba(245,241,232,0.7); }
+.hero.subpage-hero .hero-crumb a:hover { color: var(--green); }
+.hero.subpage-hero .hero-crumb .sep { color: rgba(245,241,232,0.35); }
+.hero.subpage-hero .hero-crumb .current { color: var(--paper); }
+.hero.subpage-hero .hero-eyebrow { color: var(--green); }
+.hero.subpage-hero .hero-eyebrow:before { background: var(--green); }
+.hero.subpage-hero h1 { color: var(--paper); text-shadow: 0 2px 24px rgba(0,0,0,0.35); }
+.hero.subpage-hero h1 .accent { color: var(--green); font-weight: 600; }
+.hero.subpage-hero .lede { color: rgba(245,241,232,0.9); }
+.hero.subpage-hero .lede strong {
+  background: var(--green);
+  color: var(--ink);
+}
+/* Override hero buttons against dark bg */
+.hero.subpage-hero .btn { border-color: var(--paper); }
+.hero.subpage-hero .btn.solid { background: var(--green); border-color: var(--green); color: var(--ink); }
+.hero.subpage-hero .btn.solid:hover { background: var(--paper); color: var(--ink); border-color: var(--paper); }
+.hero.subpage-hero .btn.ghost { background: transparent; color: var(--paper); border-color: rgba(245,241,232,0.5); }
+.hero.subpage-hero .btn.ghost:hover { background: var(--paper); color: var(--ink); border-color: var(--paper); }
 </style>
 </head>
 <body>
@@ -1176,7 +1458,7 @@ footer {
   <a href="/" class="logo"><img src="assets/atr-logo.png" alt="The Athletic Training Room"></a>
   <div class="nav-center">
     <div class="nav-dropdown">
-      <a href="#serve" class="nav-dropdown-trigger">
+      <a href="index.html#serve" class="nav-dropdown-trigger">
         Who We Serve
         <span class="caret">▾</span>
       </a>
@@ -1187,10 +1469,10 @@ footer {
         <a href="event-planners.html">Event Planners</a>
       </div>
     </div>
-    <a href="#services">Services</a>
-    <a href="#about">About</a>
-    <a href="#locations">Locations</a>
-    <a href="#pricing">Pricing</a>
+    <a href="index.html#services">Services</a>
+    <a href="index.html#about">About</a>
+    <a href="index.html#locations">Locations</a>
+    <a href="index.html#pricing">Pricing</a>
   </div>
   <div class="nav-right">
     <a href="#book" class="book-btn">Book Now</a>
@@ -1201,119 +1483,92 @@ footer {
 </nav>
 
 <!-- HERO -->
-<section class="hero">
-  <div class="hero-bg" style="background-image: url('assets/hero-bg.jpg');"></div>
-  <div class="hero-status">
-    <div class="status-left">
-      <span class="dot"></span>
-      <span>Now Booking</span>
-      <span class="status-locs">Des Moines · Waukee · Indianola Coming Soon</span>
-    </div>
-    <div class="status-right">
-      <a href="tel:5159645000">(515) 964-5000</a>
-      <a href="mailto:ATRankeny@gmail.com">ATRankeny@gmail.com</a>
-    </div>
+<section class="hero subpage-hero"><div class="hero-bg" style="background-image: url('assets/who-we-serve-athletic-trainers.jpg');"></div><div class="hero-crumb">
+    <a href="index.html">Home</a>
+    <span class="sep">/</span>
+    <span>Who We Serve</span>
+    <span class="sep">/</span>
+    <span class="current">Athletic Trainers</span>
   </div>
 
   <div class="hero-title">
-    <img src="assets/atr-logo.png" alt="The Athletic Training Room" class="hero-logo">
+    <div class="hero-eyebrow">Who We Serve</div>
     <h1>
-      <span class="row">Elite level care</span>
-      <span class="row">for every <span class="accent">athlete.</span></span>
+      <span class="row">Continuing education</span>
+      <span class="row">and <span class="accent">community.</span></span>
     </h1>
   </div>
 
   <div class="hero-body">
-    <p class="lede">Sports medicine that doesn't waste your time. <strong>Hands-on rehab</strong>, injury evaluation, dry needling, concussion care, and event coverage. Built for Iowa athletes since 2015.</p>
+    <p class="lede">The ATR is a continuing education provider with the Board of Certification. We are committed to providing up-to-date CEU opportunities to athletic trainers around the country, plus mentorship and event coverage opportunities for students and certified pros.</p>
     <div class="actions">
-      <a href="#book" class="btn solid">Book Appointment <span class="arrow">→</span></a>
-      <a href="#services" class="btn ghost">See Services <span class="arrow">↓</span></a>
-    </div>
-  </div>
-
-  <div class="hero-stats">
-    <div class="stat">
-      <div class="big">07</div>
-      <div class="lbl">Certified Trainers</div>
-    </div>
-    <div class="stat">
-      <div class="big">03</div>
-      <div class="lbl">Iowa Locations</div>
-    </div>
-    <div class="stat">
-      <div class="big">09</div>
-      <div class="lbl">Focused Services</div>
-    </div>
-    <div class="stat">
-      <div class="big">10+</div>
-      <div class="lbl">Years In Practice</div>
+      <a href="#book" class="btn solid">Book Appointment <span class="arrow">&rarr;</span></a>
+      <a href="#services" class="btn ghost">See Services <span class="arrow">&darr;</span></a>
     </div>
   </div>
 </section>
 
-<!-- MARQUEE -->
-<div class="marquee-bar">
-  <div class="marquee">
-    <span>Injury Evaluation</span><span class="sep">/</span>
-    <span>Rehabilitation</span><span class="sep">/</span>
-    <span>Dry Needling</span><span class="sep">/</span>
-    <span>Concussion Management</span><span class="sep">/</span>
-    <span>Event Coverage</span><span class="sep">/</span>
-    <span>Normatec Recovery</span><span class="sep">/</span>
-    <span>Mobility &amp; Flexibility</span><span class="sep">/</span>
-    <span>Injury Evaluation</span><span class="sep">/</span>
-    <span>Rehabilitation</span><span class="sep">/</span>
-    <span>Dry Needling</span><span class="sep">/</span>
-    <span>Concussion Management</span><span class="sep">/</span>
-    <span>Event Coverage</span><span class="sep">/</span>
-    <span>Normatec Recovery</span><span class="sep">/</span>
-    <span>Mobility &amp; Flexibility</span><span class="sep">/</span>
+<section class="subpage">
+  <div class="subpage-grid">
+    <div class="sub-col">
+      <div class="sub-label">Continuing Education</div>
+      <h2>Stay sharp on <span class="accent">current research.</span></h2>
+      <p>As sports medicine providers, it is critical that athletic trainers stay connected to the most current research and practice based on those results. We host live and recorded CEU sessions throughout the year, presented by working clinicians.</p>
+    </div>
+    <div class="sub-col">
+      <div class="sub-label">Event Coverage</div>
+      <h2>Per diem work <span class="accent">across Iowa.</span></h2>
+      <p>We provide AT coverage at sporting events all over Iowa. If you are looking for per diem opportunities, tournament work, or want to gain on-the-field experience as a student, we have flexible coverage assignments that fit around your schedule.</p>
+    </div>
   </div>
-</div>
 
-<!-- WHO WE SERVE -->
-<section class="section serve" id="serve">
-  <div class="section-num">Who We Serve</div>
-  <h2 class="section-title">Built for the <span class="accent">people</span><br>who keep showing up.</h2>
-  <p class="section-sub">Four audiences, one standard of care. Walk in with a question, walk out with a plan.</p>
+  <div class="sub-feature">
+    <div class="sub-feature-img" style="background-image: url('assets/who-we-serve-athletic-trainers.jpg');"></div>
+    <div class="sub-feature-text">
+      <div class="sub-label">Upcoming Live CEUs</div>
+      <h2>Live continuing <span class="accent">education sessions.</span></h2>
+      <div class="ceu-list">
+        <div class="ceu-item">
+          <div class="ceu-date">Feb 15</div>
+          <div class="ceu-info">
+            <h4>Emergency Action Plans</h4>
+            <p>Presented by Michael Donahue &middot; 12:00 PM &ndash; 1:00 PM</p>
+            <a href="#" class="sub-cta">Register <span class="arrow">&rarr;</span></a>
+          </div>
+        </div>
+        <div class="ceu-item">
+          <div class="ceu-date">Mar 22</div>
+          <div class="ceu-info">
+            <h4>Emergency Action Plans</h4>
+            <p>Presented by Michael Donahue &middot; 12:00 PM &ndash; 1:00 PM</p>
+            <a href="#" class="sub-cta">Register <span class="arrow">&rarr;</span></a>
+          </div>
+        </div>
+        <div class="ceu-item">
+          <div class="ceu-date">Apr 19</div>
+          <div class="ceu-info">
+            <h4>Emergency Action Plans</h4>
+            <p>Presented by Michael Donahue &middot; 12:00 PM &ndash; 1:00 PM</p>
+            <a href="#" class="sub-cta">Register <span class="arrow">&rarr;</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-  <div class="serve-grid">
-    <a href="athletes.html" class="serve-card">
-      <div class="bg" style="background-image: url('assets/who-we-serve-athletes.jpg');"></div>
-      <div class="num">01 / 04</div>
-      <div class="content">
-        <h3><span class="accent">Athletes</span></h3>
-        <p>Hands-on care built around your sport, your timeline, and the way you actually play.</p>
-        <div class="go">Learn More <span class="arrow">→</span></div>
-      </div>
-    </a>
-    <a href="parents-coaches.html" class="serve-card">
-      <div class="bg" style="background-image: url('assets/who-we-serve-parents-and-coaches.jpg');"></div>
-      <div class="num">02 / 04</div>
-      <div class="content">
-        <h3>Parents &amp; <span class="accent">Coaches</span></h3>
-        <p>Honest answers on what's wrong, what it takes, and when they're cleared.</p>
-        <div class="go">Learn More <span class="arrow">→</span></div>
-      </div>
-    </a>
-    <a href="athletic-trainers.html" class="serve-card">
-      <div class="bg" style="background-image: url('assets/who-we-serve-athletic-trainers.jpg');"></div>
-      <div class="num">03 / 04</div>
-      <div class="content">
-        <h3>Athletic <span class="accent">Trainers</span></h3>
-        <p>Per diem work, mentorship, and continuing ed with our growing team.</p>
-        <div class="go">Learn More <span class="arrow">→</span></div>
-      </div>
-    </a>
-    <a href="event-planners.html" class="serve-card">
-      <div class="bg" style="background-image: url('assets/who-we-serve-event-planners.jpg');"></div>
-      <div class="num">04 / 04</div>
-      <div class="content">
-        <h3>Event <span class="accent">Planners</span></h3>
-        <p>On-site medical for tournaments, races, leagues, and meets across Iowa.</p>
-        <div class="go">Learn More <span class="arrow">→</span></div>
-      </div>
-    </a>
+  <div class="sub-strip">
+    <div class="sub-strip-col">
+      <div class="sub-label">Get Involved</div>
+      <h3>Join the team.</h3>
+      <p>We work with high schools, colleges, pro teams, and statewide events. The ATR values continuing education, mentorship, and a real community of certified pros. If you want to build your practice here, we want to hear from you.</p>
+      <a href="mailto:ATRankeny@gmail.com" class="sub-cta">Email us about openings <span class="arrow">&rarr;</span></a>
+    </div>
+    <div class="sub-strip-col">
+      <div class="sub-label">Volunteer &amp; Outreach</div>
+      <h3>Promote the profession.</h3>
+      <p>The ATR works closely with IATS and MAATA to enhance the profession of athletic training. If you are an AT or student interested in volunteer involvement, on-the-field experience, or outreach work, get in touch.</p>
+      <a href="mailto:ATRankeny@gmail.com" class="sub-cta">Email us about outreach <span class="arrow">&rarr;</span></a>
+    </div>
   </div>
 </section>
 
@@ -1409,130 +1664,6 @@ footer {
         <a href="mailto:ATRankeny@gmail.com" class="book-btn-svc email-only">Email Us <span class="arrow">→</span></a>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- ABOUT -->
-<section class="about" id="about">
-  <div class="about-img"></div>
-  <div class="about-text">
-    <div class="section-num">The Founder</div>
-    <h2>Built by someone <span class="accent">who's been there.</span></h2>
-    <p>Michael Donahue opened the first Athletic Training Room in 2015 with one goal: bring hands-on sports medicine to athletes who deserve better than a referral chain. No insurance gatekeeping. No protocol shortcuts.</p>
-    <p>A decade in, the team has grown to seven certified athletic trainers across three Iowa locations. The mission has not changed.</p>
-    <div class="sig">
-      <span class="name">Michael Donahue, ATC, DAT</span>
-      Founder · Owner
-    </div>
-  </div>
-</section>
-
-<!-- TEAM -->
-<section class="team">
-  <div class="section-num">The Team</div>
-  <h2 class="section-title">Meet the <span class="accent">athletic trainers.</span></h2>
-  <div class="team-intro">
-    <div></div>
-    <p>Seven certified athletic trainers serving athletes across central Iowa. Combined decades of experience at the collegiate, professional, and prep levels, plus advanced credentials in dry needling, concussion management, and sport rehabilitation.</p>
-  </div>
-
-  <div class="team-grid">
-
-    <div class="team-card">
-      <div class="team-photo" style="background-image: url('assets/headshot-michael.jpg');"></div>
-      <div class="team-info">
-        <div>
-          <div class="role">Owner · Athletic Trainer</div>
-          <h3>Michael Donahue</h3>
-          <p>A Des Moines native, Michael holds dual bachelor's degrees from the University of Iowa in Athletic Training and Health and Sports Studies, a master's in Higher Education from Iowa State, and a Doctorate in Athletic Training from Temple University. He founded The ATR in 2015 and volunteers at the state, district, and national level to promote the profession.</p>
-        </div>
-        <div class="credentials">ATC · DAT · Founder / 2015</div>
-      </div>
-    </div>
-
-    <div class="team-card">
-      <div class="team-photo" style="background-image: url('assets/headshot-kelly.jpg');"></div>
-      <div class="team-info">
-        <div>
-          <div class="role">Athletic Trainer</div>
-          <h3>Kelly Caldwell</h3>
-          <p>Born and raised in Normal, Illinois, Kelly earned her Master's in Athletic Training from Iowa State University, specializing in women's soccer during her graduate work. She joined The ATR in May 2025 and currently provides athletic training for the Des Moines Menace and Saydel High School, working primarily out of the Des Moines location.</p>
-        </div>
-        <div class="credentials">ATC · MS / Joined 2025</div>
-      </div>
-    </div>
-
-    <div class="team-card">
-      <div class="team-photo" style="background-image: url('assets/headshot-blank.jpg');"></div>
-      <div class="team-info">
-        <div>
-          <div class="role">Athletic Trainer</div>
-          <h3>Courtney Joint</h3>
-          <p>Courtney grew up in Ottumwa, Iowa, played softball at Southwestern Community College, and earned her BA in Athletic Training from Simpson College in 2016. She holds a Master of Science in Athletic Training with a specialization in Sport Neurology and Concussion from A.T. Still University. She works with the Iowa Barnstormers and Grandview Christian High School.</p>
-        </div>
-        <div class="credentials">ATC · MS Sport Neurology / Joined 2026</div>
-      </div>
-    </div>
-
-    <div class="team-card">
-      <div class="team-photo" style="background-image: url('assets/headshot-nealey.jpg');"></div>
-      <div class="team-info">
-        <div>
-          <div class="role">Athletic Trainer · Indianola Lead</div>
-          <h3>Nealey Webster</h3>
-          <p>Born in Indianola, Nealey earned her bachelor's in Athletic Training from the University of Iowa and a master's in Exercise Science and Sport Rehabilitation from Logan University. She has been with The ATR since 2015 (initially as a student volunteer) and joined as an employee in 2021. She also owns Undone Strength and Fitness in Indianola and operates the Indianola location.</p>
-        </div>
-        <div class="credentials">ATC · MS / Indianola Operator</div>
-      </div>
-    </div>
-
-    <div class="team-card">
-      <div class="team-photo" style="background-image: url('assets/headshot-blank.jpg');"></div>
-      <div class="team-info">
-        <div>
-          <div class="role">Athletic Trainer</div>
-          <h3>Megan Brady</h3>
-          <p>Megan joined The ATR in 2018 after relocating to the metro in 2016. She earned a BA from Briar Cliff College, a master's from Idaho State, and a Doctorate of Education from UNI in 2016. She spent 15 years at the University of Northern Iowa supporting soccer, softball, basketball, and volleyball, then 5 years at Drake, before joining the Master of Athletic Training faculty at Iowa State.</p>
-        </div>
-        <div class="credentials">ATC · EdD / Joined 2018</div>
-      </div>
-    </div>
-
-    <div class="team-card">
-      <div class="team-photo" style="background-image: url('assets/headshot-blank.jpg');"></div>
-      <div class="team-info">
-        <div>
-          <div class="role">Athletic Trainer</div>
-          <h3>Zach Woods</h3>
-          <p>Zach graduated from the University of Northern Iowa with a BA in Athletic Training. He worked at Western Illinois University covering football and basketball while earning an MS in Health Sciences (Public Health). He has practiced across collegiate, high school, hospital, and industrial settings, and is a licensed EMT-B in Iowa. He currently works with Interstate Thirty-Five High School.</p>
-        </div>
-        <div class="credentials">ATC · MS · EMT-B</div>
-      </div>
-    </div>
-
-    <div class="team-card">
-      <div class="team-photo" style="background-image: url('assets/headshot-lauren.jpg');"></div>
-      <div class="team-info">
-        <div>
-          <div class="role">Athletic Trainer · Dry Needling Certified</div>
-          <h3>Lauren Runquist</h3>
-          <p>A Certified Athletic Trainer for six years, Lauren has been dry needle certified for three years through Structure and Function Education, completing both Foundations and Advanced Orthopedic Rehab and Sports Performance. She uses the technique to target muscle tightness, improve mobility, and speed up recovery for athletes and everyday clients alike.</p>
-        </div>
-        <div class="credentials">ATC · Dry Needling Cert.</div>
-      </div>
-    </div>
-
-    <div class="team-card hire">
-      <div class="team-info">
-        <div>
-          <div class="role">Join the Team</div>
-          <h3>Now hiring<br>athletic trainers.</h3>
-          <p>Build your practice with a team that values continuing education, mentorship, and a real community of certified pros. We work with high schools, colleges, pro teams, and statewide events across Iowa.</p>
-        </div>
-        <a href="mailto:ATRankeny@gmail.com" class="apply-link">Email Us →</a>
-      </div>
-    </div>
-
   </div>
 </section>
 
@@ -1633,9 +1764,9 @@ footer {
     </div>
     <div>
       <h5>Care</h5>
-      <a href="#services">Services</a>
+      <a href="index.html#services">Services</a>
       <a href="#serve">Who We Serve</a>
-      <a href="#pricing">Pricing</a>
+      <a href="index.html#pricing">Pricing</a>
     </div>
     <div>
       <h5>Visit</h5>
@@ -1645,7 +1776,7 @@ footer {
     </div>
     <div>
       <h5>Company</h5>
-      <a href="#about">About</a>
+      <a href="index.html#about">About</a>
       <a href="#about">Team</a>
       <a href="#book">Book Now</a>
     </div>
@@ -1665,10 +1796,10 @@ footer {
   <a href="parents-coaches.html" class="mobile-sub">Parents &amp; Coaches</a>
   <a href="athletic-trainers.html" class="mobile-sub">Athletic Trainers</a>
   <a href="event-planners.html" class="mobile-sub">Event Planners</a>
-  <a href="#services" onclick="document.querySelector('.mobile-menu').classList.remove('open'); document.querySelector('.nav-toggle').classList.remove('open')">Services</a>
-  <a href="#about" onclick="document.querySelector('.mobile-menu').classList.remove('open'); document.querySelector('.nav-toggle').classList.remove('open')">About</a>
-  <a href="#locations" onclick="document.querySelector('.mobile-menu').classList.remove('open'); document.querySelector('.nav-toggle').classList.remove('open')">Locations</a>
-  <a href="#pricing" onclick="document.querySelector('.mobile-menu').classList.remove('open'); document.querySelector('.nav-toggle').classList.remove('open')">Pricing</a>
+  <a href="index.html#services" onclick="document.querySelector('.mobile-menu').classList.remove('open'); document.querySelector('.nav-toggle').classList.remove('open')">Services</a>
+  <a href="index.html#about" onclick="document.querySelector('.mobile-menu').classList.remove('open'); document.querySelector('.nav-toggle').classList.remove('open')">About</a>
+  <a href="index.html#locations" onclick="document.querySelector('.mobile-menu').classList.remove('open'); document.querySelector('.nav-toggle').classList.remove('open')">Locations</a>
+  <a href="index.html#pricing" onclick="document.querySelector('.mobile-menu').classList.remove('open'); document.querySelector('.nav-toggle').classList.remove('open')">Pricing</a>
   <a href="#book">Book Now</a>
 </div>
 
