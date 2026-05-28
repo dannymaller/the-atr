@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Parents & Coaches | The Athletic Training Room</title>
+<title>Pricing | The Athletic Training Room</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -140,6 +140,23 @@ nav.main .nav-center .nav-dropdown-menu a:hover {
   padding: 70px 32px 80px;
   position: relative;
   background: var(--paper);
+  overflow: hidden;
+  isolation: isolate;
+}
+.hero > *:not(.hero-bg) { position: relative; z-index: 1; }
+.hero .hero-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center 30%;
+  z-index: 0;
+}
+.hero .hero-bg:after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(245,241,232,0.65) 0%, rgba(245,241,232,0.45) 50%, rgba(245,241,232,0.55) 100%);
 }
 
 .hero-status {
@@ -194,6 +211,7 @@ nav.main .nav-center .nav-dropdown-menu a:hover {
   height: 64px;
   width: auto;
   margin-bottom: 32px;
+  margin-left: -32px;
 }
 .hero-title h1 {
   font-family: 'Oswald', sans-serif;
@@ -1149,8 +1167,33 @@ footer {
 
 @media (max-width: 900px) {
   .hero { padding: 40px 18px 60px; }
+  .hero-status {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    padding: 12px 0 16px;
+    margin-bottom: 40px;
+  }
+  .hero-status .status-left {
+    flex-wrap: wrap;
+    gap: 8px 12px;
+    align-items: center;
+  }
+  .hero-status .status-locs {
+    width: 100%;
+    color: var(--ink-soft);
+    letter-spacing: 0.06em;
+  }
+  .hero-status .status-right {
+    flex-wrap: wrap;
+    gap: 10px 16px;
+    width: 100%;
+    font-size: 10.5px;
+  }
   .hero-title { margin-bottom: 36px; }
-  .hero-logo { height: 48px; margin-bottom: 22px; }
+  .hero-logo { height: 48px; margin-bottom: 22px; margin-left: -18px; }
   .hero-title h1 { font-size: clamp(44px, 12vw, 78px); }
   .hero-body { margin-top: 32px; gap: 24px; }
   .hero-body .lede { font-size: 17px; }
@@ -1212,22 +1255,182 @@ footer {
   .foot-bottom { flex-direction: column; gap: 10px; text-align: center; margin-top: 36px; }
 }
 
-/* ========= SUBPAGE ========= */
-.hero-crumb {
+/* ========= PRICING PAGE ========= */
+.pricing-section { padding: 130px 32px; background: var(--paper); }
+.pricing-intro {
+  max-width: 640px;
+  font-size: 18px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  margin-top: 18px;
+  margin-bottom: 80px;
+}
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0;
+  border-top: 2px solid var(--ink);
+  border-left: 2px solid var(--ink);
+}
+.price-card {
+  border-right: 2px solid var(--ink);
+  border-bottom: 2px solid var(--ink);
+  padding: 44px 40px;
+  background: var(--paper);
   display: flex;
-  align-items: center;
-  gap: 10px;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: background 0.25s;
+  position: relative;
+  min-height: 460px;
+}
+.price-card:hover { background: var(--paper-2); }
+.price-card-top { margin-bottom: 28px; }
+.price-label {
   font-family: 'DM Mono', monospace;
   font-size: 12px;
-  letter-spacing: 0.1em;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--green-deep);
+  margin-bottom: 18px;
+  display: inline-block;
+}
+.price-card h3 {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 600;
+  font-size: 44px;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin-bottom: 20px;
+}
+.price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+.price {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 700;
+  font-size: 64px;
+  line-height: 1;
+  letter-spacing: -0.025em;
+  color: var(--green-deep);
+}
+.price-unit {
+  font-family: 'DM Mono', monospace;
+  font-size: 14px;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--ink-soft);
-  margin-bottom: 40px;
 }
-.hero-crumb a { color: var(--ink-soft); transition: color 0.2s; }
-.hero-crumb a:hover { color: var(--green-deep); }
-.hero-crumb .sep { color: rgba(20,20,15,0.3); }
-.hero-crumb .current { color: var(--ink); }
+.price-duration {
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.price-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 32px 0;
+  border-top: 1px solid var(--rule);
+}
+.price-list li {
+  padding: 12px 0 12px 24px;
+  border-bottom: 1px solid var(--rule);
+  font-size: 14.5px;
+  line-height: 1.5;
+  color: var(--ink);
+  position: relative;
+}
+.price-list li:before {
+  content: '+';
+  position: absolute;
+  left: 0; top: 12px;
+  color: var(--green-deep);
+  font-family: 'Oswald', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1;
+}
+.price-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 18px;
+  border: 1.5px solid var(--ink);
+  color: var(--ink);
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: all 0.2s;
+  text-decoration: none;
+  align-self: flex-start;
+  margin-top: auto;
+  min-width: 200px;
+}
+.price-cta:hover { background: var(--ink); color: var(--green); }
+.price-cta .arrow { transition: transform 0.2s; }
+.price-cta:hover .arrow { transform: translateX(4px); }
+.price-cta.solid { background: var(--green); border-color: var(--green); color: var(--ink); }
+.price-cta.solid:hover { background: var(--ink); border-color: var(--ink); color: var(--green); }
+
+.pricing-note {
+  margin-top: 60px;
+  padding: 44px 40px;
+  background: var(--ink);
+  color: var(--paper);
+  border: 2px solid var(--ink);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 40px;
+  align-items: center;
+}
+.pricing-note p {
+  font-size: 17px;
+  line-height: 1.5;
+  color: rgba(245,241,232,0.85);
+  margin: 0;
+  max-width: 540px;
+}
+.pricing-note-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.pricing-note .price-cta {
+  margin-top: 0;
+  border-color: rgba(245,241,232,0.4);
+  color: var(--paper);
+  min-width: 180px;
+}
+.pricing-note .price-cta:hover { background: var(--paper); border-color: var(--paper); color: var(--ink); }
+.pricing-note .price-cta.solid { background: var(--green); border-color: var(--green); color: var(--ink); }
+.pricing-note .price-cta.solid:hover { background: var(--paper); border-color: var(--paper); color: var(--ink); }
+
+@media (max-width: 1100px) {
+  .pricing-grid { grid-template-columns: 1fr; }
+  .pricing-note { grid-template-columns: 1fr; gap: 24px; }
+}
+@media (max-width: 900px) {
+  .pricing-section { padding: 70px 18px; }
+  .pricing-intro { font-size: 16px; margin-bottom: 50px; }
+  .price-card { padding: 32px 24px; min-height: auto; }
+  .price-card h3 { font-size: 36px; }
+  .price { font-size: 52px; }
+  .price-cta { width: 100%; min-width: 0; min-height: 48px; }
+  .pricing-note { padding: 32px 22px; }
+  .pricing-note p { font-size: 15px; }
+}
+
+/* ========= PRICING HERO (matches subpage) ========= */
 .hero-eyebrow {
   font-family: 'DM Mono', monospace;
   font-size: 14px;
@@ -1238,236 +1441,6 @@ footer {
   margin-bottom: 28px;
   display: inline-block;
 }
-.hero-eyebrow:before { display: none; }
-
-.subpage { padding: 130px 32px; background: var(--paper); }
-.subpage-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
-  margin-bottom: 100px;
-}
-.sub-col {
-  background: var(--paper-2);
-  border: 2px solid var(--ink);
-  padding: 40px 36px;
-}
-.sub-label {
-  font-family: 'DM Mono', monospace;
-  font-size: 13px;
-  font-weight: 500;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--green-deep);
-  margin-bottom: 18px;
-  display: inline-block;
-}
-.sub-col h2, .sub-feature-text h2 {
-  font-family: 'Oswald', sans-serif;
-  font-weight: 600;
-  font-size: clamp(38px, 4.5vw, 60px);
-  line-height: 0.92;
-  letter-spacing: -0.02em;
-  text-transform: uppercase;
-  margin-bottom: 24px;
-  color: var(--ink);
-}
-.sub-col h2 .accent, .sub-feature-text h2 .accent { color: var(--green-deep); font-weight: 700; }
-.sub-col p, .sub-feature-text p {
-  font-size: 16px;
-  line-height: 1.6;
-  color: var(--ink-soft);
-  margin-bottom: 18px;
-}
-.sub-list {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 24px 0;
-}
-.sub-list li {
-  padding: 14px 0 14px 28px;
-  border-bottom: 1px solid var(--rule);
-  font-size: 15px;
-  line-height: 1.5;
-  color: var(--ink);
-  position: relative;
-}
-.sub-list li:before {
-  content: '+';
-  position: absolute;
-  left: 0; top: 14px;
-  color: var(--green-deep);
-  font-family: 'Oswald', sans-serif;
-  font-weight: 600;
-  font-size: 18px;
-  line-height: 1;
-}
-.sub-list li:last-child { border-bottom: none; }
-.sub-list.compact li { padding: 10px 0 10px 24px; font-size: 14px; }
-.sub-list.compact li:before { top: 10px; font-size: 15px; }
-
-.sub-cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  font-family: 'DM Mono', monospace;
-  font-size: 12px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--ink);
-  border: 1.5px solid var(--ink);
-  padding: 12px 18px;
-  transition: all 0.2s;
-  margin-top: 8px;
-  text-decoration: none;
-}
-.sub-cta:hover { background: var(--ink); color: var(--green); }
-.sub-cta .arrow { transition: transform 0.2s; }
-.sub-cta:hover .arrow { transform: translateX(4px); }
-
-.sub-feature {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  border: 2px solid var(--ink);
-  margin-bottom: 100px;
-  background: var(--paper);
-}
-.sub-feature-img {
-  min-height: 520px;
-  background-size: cover;
-  background-position: center;
-  border-right: 2px solid var(--ink);
-}
-.sub-feature-text {
-  padding: 60px 44px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-.sub-feature-text .sub-closing {
-  margin-top: 16px;
-  padding-top: 24px;
-  border-top: 1px solid var(--rule);
-  font-style: italic;
-  font-size: 15px;
-}
-
-.sub-strip {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  border: 2px solid var(--ink);
-}
-.sub-strip-col {
-  padding: 40px 36px;
-}
-.sub-strip-col:first-child { border-right: 2px solid var(--ink); }
-.sub-strip-col h3 {
-  font-family: 'Oswald', sans-serif;
-  font-weight: 600;
-  font-size: clamp(28px, 3.4vw, 42px);
-  text-transform: uppercase;
-  margin-bottom: 16px;
-  line-height: 0.95;
-  letter-spacing: -0.015em;
-  color: var(--ink);
-}
-.sub-strip-col p {
-  font-size: 15px;
-  line-height: 1.55;
-  color: var(--ink-soft);
-  margin-bottom: 18px;
-}
-
-.ceu-list { display: flex; flex-direction: column; gap: 20px; }
-.ceu-item {
-  display: grid;
-  grid-template-columns: 80px 1fr;
-  gap: 24px;
-  padding: 18px 0;
-  border-top: 1px solid var(--rule);
-}
-.ceu-item:last-child { border-bottom: 1px solid var(--rule); }
-.ceu-date {
-  font-family: 'Oswald', sans-serif;
-  font-size: 24px;
-  font-weight: 700;
-  letter-spacing: -0.015em;
-  text-transform: uppercase;
-  color: var(--green-deep);
-  line-height: 1;
-}
-.ceu-info h4 {
-  font-family: 'Oswald', sans-serif;
-  font-size: 24px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: -0.01em;
-  line-height: 1.02;
-  margin-bottom: 6px;
-  color: var(--ink);
-}
-.ceu-info p {
-  font-family: 'DM Mono', monospace;
-  font-size: 11px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-  margin-bottom: 10px;
-}
-
-.sub-final {
-  margin-top: 80px;
-  padding: 60px 40px;
-  border: 2px solid var(--ink);
-  background: var(--ink);
-  color: var(--paper);
-  text-align: center;
-}
-.sub-final p {
-  font-size: 18px;
-  line-height: 1.5;
-  margin-bottom: 28px;
-  color: rgba(245,241,232,0.85);
-}
-.sub-final p a { color: var(--green); }
-.sub-cta-big {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  font-family: 'DM Mono', monospace;
-  font-size: 14px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  background: var(--green);
-  color: var(--ink);
-  padding: 18px 28px;
-  border: 2px solid var(--green);
-  transition: all 0.2s;
-  text-decoration: none;
-}
-.sub-cta-big:hover { background: var(--paper); border-color: var(--paper); }
-.sub-cta-big .arrow { transition: transform 0.2s; }
-.sub-cta-big:hover .arrow { transform: translateX(4px); }
-
-@media (max-width: 1100px) {
-  .subpage-grid { grid-template-columns: 1fr; gap: 24px; }
-  .sub-feature { grid-template-columns: 1fr; }
-  .sub-feature-img { border-right: none; border-bottom: 2px solid var(--ink); min-height: 360px; }
-  .sub-feature-text { padding: 40px 28px; }
-  .sub-strip { grid-template-columns: 1fr; }
-  .sub-strip-col:first-child { border-right: none; border-bottom: 2px solid var(--ink); }
-}
-@media (max-width: 900px) {
-  .subpage { padding: 70px 18px; }
-  .hero-crumb { font-size: 10px; gap: 6px; flex-wrap: wrap; margin-bottom: 24px; }
-  .sub-col, .sub-strip-col { padding: 28px 22px; }
-  .sub-col h2, .sub-feature-text h2 { font-size: clamp(28px, 8vw, 40px); }
-  .sub-feature-text { padding: 32px 22px; }
-  .sub-final { padding: 40px 22px; margin-top: 50px; }
-  .sub-final p { font-size: 16px; }
-}
-
-/* Subpage hero with photo background */
 .hero.subpage-hero {
   position: relative;
   color: var(--paper);
@@ -1482,7 +1455,6 @@ footer {
   background-size: cover;
   background-position: center;
   z-index: -2;
-  filter: grayscale(35%) contrast(0.98);
 }
 .hero.subpage-hero .hero-bg:after {
   content: '';
@@ -1490,14 +1462,7 @@ footer {
   inset: 0;
   background: linear-gradient(180deg, rgba(20,20,15,0.55) 0%, rgba(20,20,15,0.7) 50%, rgba(20,20,15,0.88) 100%);
 }
-/* Override text colors for legibility on photo */
-.hero.subpage-hero .hero-crumb { color: rgba(245,241,232,0.7); }
-.hero.subpage-hero .hero-crumb a { color: rgba(245,241,232,0.7); }
-.hero.subpage-hero .hero-crumb a:hover { color: var(--green); }
-.hero.subpage-hero .hero-crumb .sep { color: rgba(245,241,232,0.35); }
-.hero.subpage-hero .hero-crumb .current { color: var(--paper); }
 .hero.subpage-hero .hero-eyebrow { color: var(--green); }
-
 .hero.subpage-hero h1 {
   color: var(--paper);
   font-weight: 700;
@@ -1508,11 +1473,7 @@ footer {
 }
 .hero.subpage-hero h1 .accent { color: var(--green); font-weight: 700; }
 .hero.subpage-hero .lede { color: rgba(245,241,232,0.9); }
-.hero.subpage-hero .lede strong {
-  background: var(--green);
-  color: var(--ink);
-}
-/* Override hero buttons against dark bg */
+.hero.subpage-hero .lede strong { background: var(--green); color: var(--ink); }
 .hero.subpage-hero .btn { border-color: var(--paper); }
 .hero.subpage-hero .btn.solid { background: var(--green); border-color: var(--green); color: var(--ink); }
 .hero.subpage-hero .btn.solid:hover { background: var(--paper); color: var(--ink); border-color: var(--paper); }
@@ -1552,159 +1513,118 @@ footer {
 </nav>
 
 <!-- HERO -->
-<section class="hero subpage-hero"><div class="hero-bg" style="background-image: url('assets/who-we-serve-parents-and-coaches.jpg');"></div>
-
+<section class="hero subpage-hero">
+  <div class="hero-bg" style="background-image: url('assets/who-we-serve-athletes.jpg');"></div>
   <div class="hero-title">
-    <div class="hero-eyebrow">Who We Serve</div>
+    <div class="hero-eyebrow">Pricing</div>
     <h1>
-      <span class="row">Honest answers</span>
-      <span class="row">for <span class="accent">families.</span></span>
+      <span class="row">Clinical excellence,</span>
+      <span class="row">straightforward <span class="accent">rates.</span></span>
     </h1>
   </div>
 
   <div class="hero-body">
-    <p class="lede">The ATR is committed to the health and safety of every athlete. We provide educational opportunities for coaches to recognize common injuries, deliver first aid, and manage emergency situations.</p>
+    <p class="lede">Comprehensive sports medicine and evidence-based treatment for athletes and active individuals at every level. Personalized attention, optimal outcomes, transparent pricing.</p>
     <div class="actions">
-      <a href="#book" class="btn solid">Book Appointment <span class="arrow">&rarr;</span></a>
-      <a href="#services" class="btn ghost">See Services <span class="arrow">&darr;</span></a>
+      <a href="#pricing-cards" class="btn solid">See Pricing <span class="arrow">&darr;</span></a>
+      <a href="#book" class="btn ghost">Book Appointment <span class="arrow">&rarr;</span></a>
     </div>
   </div>
 </section>
 
-<section class="subpage">
-  <div class="subpage-grid">
-    <div class="sub-col">
-      <div class="sub-label">Coaching Authorization</div>
-      <h2>Get your <span class="accent">taping certified.</span></h2>
-      <p>If you are a new coach who needs to fulfill taping requirements to gain certification, or you need to re-certify your coaching authorization, a certified athletic trainer will help you refine your taping skills.</p>
-      <a href="tel:5159645000" class="sub-cta">Call (515) 964-5000 to schedule <span class="arrow">&rarr;</span></a>
+<section class="pricing-section" id="pricing-cards">
+  <div class="section-num">Services &amp; Rates</div>
+  <h2 class="section-title">Pay only for <span class="accent">what you need.</span></h2>
+  <p class="pricing-intro">Each session is 45 minutes. No memberships, no packages, no surprise fees. Book one when you need it, skip when you don't.</p>
+
+  <div class="pricing-grid">
+
+    <div class="price-card">
+      <div class="price-card-top">
+        <div class="price-label">Most Popular</div>
+        <h3>Dry Needling</h3>
+        <div class="price-row">
+          <span class="price">$60</span>
+          <span class="price-unit">/ session</span>
+        </div>
+        <div class="price-duration">45 minutes</div>
+      </div>
+      <ul class="price-list">
+        <li>Targeted needles activate local and systemic response in specific structures</li>
+        <li>Pain relief and decreased muscle tension</li>
+        <li>Mobility work and stretching following the needling</li>
+        <li>Ideal for chronic tightness, trigger points, and recovery</li>
+      </ul>
+      <a href="#book" class="price-cta">Book Dry Needling <span class="arrow">&rarr;</span></a>
     </div>
-    <div class="sub-col">
-      <div class="sub-label">CPR / AED / First Aid</div>
-      <h2>Be ready when <span class="accent">it matters.</span></h2>
-      <p>In an emergency, trained first responders on scene save lives. Since there is not always an athletic trainer at practices, coaches should be prepared to handle the moment. Instructors can come to your location, or your group can come to ours. Monthly individual certification classes are available.</p>
-      <a href="tel:5159645000" class="sub-cta">Call to set up a training <span class="arrow">&rarr;</span></a>
+
+    <div class="price-card">
+      <div class="price-card-top">
+        <div class="price-label">Start Here</div>
+        <h3>Injury Evaluation</h3>
+        <div class="price-row">
+          <span class="price">$50</span>
+          <span class="price-unit">/ session</span>
+        </div>
+        <div class="price-duration">45 minutes</div>
+      </div>
+      <ul class="price-list">
+        <li>Complete health history and evaluation for acute or chronic musculoskeletal injury</li>
+        <li>Full body movement screening</li>
+        <li>Goal setting and initial treatment</li>
+        <li>Self-care education to start your recovery</li>
+      </ul>
+      <a href="#book" class="price-cta">Book Evaluation <span class="arrow">&rarr;</span></a>
     </div>
+
+    <div class="price-card">
+      <div class="price-card-top">
+        <div class="price-label">Best Value</div>
+        <h3>Injury Treatment</h3>
+        <div class="price-row">
+          <span class="price">$40</span>
+          <span class="price-unit">/ session</span>
+        </div>
+        <div class="price-duration">45 minutes</div>
+      </div>
+      <ul class="price-list">
+        <li>Warm-up with active and passive range of motion</li>
+        <li>Normatec Compression Therapy</li>
+        <li>Hypervolt Percussion Therapy</li>
+        <li>Cupping</li>
+        <li>Instrument Assisted Soft Tissue Mobilization (IASTM)</li>
+        <li>Manual trigger point therapy</li>
+        <li>Muscle energy activation techniques</li>
+      </ul>
+      <a href="#book" class="price-cta">Book Treatment <span class="arrow">&rarr;</span></a>
+    </div>
+
+    <div class="price-card">
+      <div class="price-card-top">
+        <div class="price-label">Recovery</div>
+        <h3>Mobility / Flexibility</h3>
+        <div class="price-row">
+          <span class="price">$40</span>
+          <span class="price-unit">/ session</span>
+        </div>
+        <div class="price-duration">45 minutes</div>
+      </div>
+      <ul class="price-list">
+        <li>Warm-up with therapeutic modalities</li>
+        <li>Active and passive range of motion</li>
+        <li>Muscle energy techniques</li>
+        <li>Joint mobilization</li>
+      </ul>
+      <a href="#book" class="price-cta">Book Mobility <span class="arrow">&rarr;</span></a>
+    </div>
+
   </div>
 
-  <div class="sub-feature">
-    <div class="sub-feature-img" style="background-image: url('assets/who-we-serve-parents-and-coaches.jpg');"></div>
-    <div class="sub-feature-text">
-      <div class="sub-label">Resources</div>
-      <h2>Concussions, <span class="accent">explained.</span></h2>
-      <p>A concussion is a brain injury caused by rapid movement of the brain against the internal wall of the skull. It can come from a direct blow to the head, or a hit to the body that causes rapid head and neck movement.</p>
-      <p>Each concussion is unique and needs individualized treatment. If you suspect your son or daughter has a concussion, have them evaluated by a provider who specializes in concussion management. Call us at (515) 964-5000 for evaluation and an individualized return-to-participation plan.</p>
-      <a href="#" class="sub-cta">Concussion Home Care Guide <span class="arrow">&rarr;</span></a>
-    </div>
-  </div>
-
-  <div class="sub-strip">
-    <div class="sub-strip-col">
-      <div class="sub-label">Injury Prevention</div>
-      <h3>Stop injuries before they start.</h3>
-      <p>The best way to keep an athlete on the field is to prevent the injury. A Functional Movement Screen identifies compensations during movement, then we design a corrective program to relax tight muscles, strengthen weak ones, and improve efficiency.</p>
-      <a href="tel:5159645000" class="sub-cta">Schedule a 30-minute consult <span class="arrow">&rarr;</span></a>
-    </div>
-    <div class="sub-strip-col">
-      <div class="sub-label">Acute Injury Treatment</div>
-      <h3>If they are hurt, call us.</h3>
-      <p>If your son or daughter has experienced an injury, call (515) 964-5000 to schedule an orthopedic injury evaluation. We will evaluate the injury, build a plan, and walk you through every step until they are cleared to return.</p>
-      <a href="tel:5159645000" class="sub-cta">Schedule an evaluation <span class="arrow">&rarr;</span></a>
-    </div>
-  </div>
-</section>
-
-<!-- SERVICES -->
-<section class="services" id="services">
-  <div class="section-num">Services</div>
-  <h2 class="section-title">Care that <span class="accent">earns</span><br>the comeback.</h2>
-  <div class="services-list">
-    <div class="service-row">
-      <div class="idx">001</div>
-      <div class="name"><span class="accent">Injury</span> Evaluation</div>
-      <div class="desc">Full health history, evaluation of acute and chronic musculoskeletal injuries, and a body movement screening. We build the plan around your sport and your goals.</div>
-      <div class="book">
-        <div class="book-label">Schedule</div>
-        <a href="https://outlook.office.com/book/TheATRDesMoines2@theathletictrainer.com/?ismsaljsauthenabled" target="_blank" class="book-btn-svc">Des Moines <span class="arrow">→</span></a>
-        <a href="https://outlook.office.com/book/TheATRWaukee@theathletictrainer.com/?ismsaljsauthenabled" target="_blank" class="book-btn-svc">Waukee <span class="arrow">→</span></a>
-      </div>
-    </div>
-    <div class="service-row">
-      <div class="idx">002</div>
-      <div class="name"><span class="accent">Injury</span> Rehabilitation</div>
-      <div class="desc">Decrease pain, restore mobility, rebuild strength. Certified athletic trainers walk you back to your sport on a timeline that protects the return.</div>
-      <div class="book">
-        <div class="book-label">Schedule</div>
-        <a href="https://outlook.office.com/book/TheATRDesMoines2@theathletictrainer.com/?ismsaljsauthenabled" target="_blank" class="book-btn-svc">Des Moines <span class="arrow">→</span></a>
-        <a href="https://outlook.office.com/book/TheATRWaukee@theathletictrainer.com/?ismsaljsauthenabled" target="_blank" class="book-btn-svc">Waukee <span class="arrow">→</span></a>
-      </div>
-    </div>
-    <div class="service-row">
-      <div class="idx">003</div>
-      <div class="name"><span class="accent">Dry</span> Needling</div>
-      <div class="desc">Monofilament needles release muscle tension and trigger points, creating the local, segmental, and systemic conditions for healing.</div>
-      <div class="book">
-        <div class="book-label">Schedule</div>
-        <a href="https://outlook.office.com/book/TheATRDesMoines2@theathletictrainer.com/?ismsaljsauthenabled" target="_blank" class="book-btn-svc">Des Moines <span class="arrow">→</span></a>
-        <a href="https://outlook.office.com/book/TheATRWaukee@theathletictrainer.com/?ismsaljsauthenabled" target="_blank" class="book-btn-svc">Waukee <span class="arrow">→</span></a>
-      </div>
-    </div>
-    <div class="service-row">
-      <div class="idx">004</div>
-      <div class="name"><span class="accent">Mobility</span> &amp; Flexibility</div>
-      <div class="desc">Cupping, soft-tissue mobilization, myofascial release, targeted stretching. Sessions tailored to what your body needs that day.</div>
-      <div class="book">
-        <div class="book-label">Schedule</div>
-        <a href="https://outlook.office.com/book/TheATRDesMoines2@theathletictrainer.com/?ismsaljsauthenabled" target="_blank" class="book-btn-svc">Des Moines <span class="arrow">→</span></a>
-        <a href="https://outlook.office.com/book/TheATRWaukee@theathletictrainer.com/?ismsaljsauthenabled" target="_blank" class="book-btn-svc">Waukee <span class="arrow">→</span></a>
-      </div>
-    </div>
-    <div class="service-row">
-      <div class="idx">005</div>
-      <div class="name"><span class="accent">Injury</span> Prevention</div>
-      <div class="desc">Personalized movement assessments identify imbalances and risk factors before they become injuries. For individuals or whole teams.</div>
-      <div class="book">
-        <div class="book-label">Schedule</div>
-        <a href="https://outlook.office.com/book/TheATRDesMoines2@theathletictrainer.com/?ismsaljsauthenabled" target="_blank" class="book-btn-svc">Des Moines <span class="arrow">→</span></a>
-        <a href="https://outlook.office.com/book/TheATRWaukee@theathletictrainer.com/?ismsaljsauthenabled" target="_blank" class="book-btn-svc">Waukee <span class="arrow">→</span></a>
-      </div>
-    </div>
-    <div class="service-row">
-      <div class="idx">006</div>
-      <div class="name"><span class="accent">Normatec</span> Recovery</div>
-      <div class="desc">Compression therapy moves fluid out of heavy legs and circulates blood, oxygen, and nutrients to the muscles that need them.</div>
-      <div class="book">
-        <div class="book-label">Schedule</div>
-        <a href="https://outlook.office.com/book/TheATRDesMoines2@theathletictrainer.com/?ismsaljsauthenabled" target="_blank" class="book-btn-svc">Des Moines <span class="arrow">→</span></a>
-      </div>
-    </div>
-    <div class="service-row">
-      <div class="idx">007</div>
-      <div class="name"><span class="accent">Concussion</span> Management</div>
-      <div class="desc">Virtual return-to-play guidance for athletes and parents. We track the protocol so you know what's next at every stage.</div>
-      <div class="book">
-        <div class="book-label">Schedule</div>
-        <a href="https://outlook.office.com/book/TheATRDesMoines2@theathletictrainer.com/?ismsaljsauthenabled" target="_blank" class="book-btn-svc">Des Moines <span class="arrow">→</span></a>
-        <a href="https://outlook.office.com/book/TheATRWaukee@theathletictrainer.com/?ismsaljsauthenabled" target="_blank" class="book-btn-svc">Waukee <span class="arrow">→</span></a>
-      </div>
-    </div>
-    <div class="service-row">
-      <div class="idx">008</div>
-      <div class="name"><span class="accent">Event</span> Coverage</div>
-      <div class="desc">Certified athletic trainers at sporting events across Iowa. Acute orthopedic assessment, cardiac and respiratory response, concussion evaluation.</div>
-      <div class="book">
-        <div class="book-label">Contact</div>
-        <a href="mailto:ATRankeny@gmail.com" class="book-btn-svc email-only">Email Us <span class="arrow">→</span></a>
-      </div>
-    </div>
-    <div class="service-row">
-      <div class="idx">009</div>
-      <div class="name"><span class="accent">CPR</span> &amp; AED Training</div>
-      <div class="desc">Certification and recertification for coaches, teachers, fitness pros, and community members. We come to your location.</div>
-      <div class="book">
-        <div class="book-label">Contact</div>
-        <a href="mailto:ATRankeny@gmail.com" class="book-btn-svc email-only">Email Us <span class="arrow">→</span></a>
-      </div>
+  <div class="pricing-note">
+    <p>Walk-ins welcome at every location. Same-week availability for most online bookings.</p>
+    <div class="pricing-note-actions">
+      <a href="https://outlook.office.com/book/TheATRDesMoines2@theathletictrainer.com/?ismsaljsauthenabled" target="_blank" class="price-cta solid">Book Des Moines <span class="arrow">&rarr;</span></a>
+      <a href="https://outlook.office.com/book/TheATRWaukee@theathletictrainer.com/?ismsaljsauthenabled" target="_blank" class="price-cta solid">Book Waukee <span class="arrow">&rarr;</span></a>
     </div>
   </div>
 </section>

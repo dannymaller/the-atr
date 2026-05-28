@@ -40,7 +40,7 @@ nav.main {
   align-items: center;
   border-bottom: 2px solid var(--ink);
   background: var(--paper);
-  position: sticky; top: 0; z-index: 50;
+  position: sticky; top: 0; z-index: 300;
   gap: 32px;
 }
 nav.main .logo img { height: 38px; }
@@ -992,26 +992,67 @@ footer {
   gap: 5px;
   cursor: pointer;
   padding: 0;
-  margin-left: auto;
+  z-index: 350;
+  transition: background 0.25s, transform 0.25s;
+}
+.nav-toggle.open {
+  background: var(--green);
+  transform: rotate(90deg);
 }
 .nav-toggle span {
   display: block;
   width: 18px; height: 2px; background: var(--ink);
-  transition: transform 0.2s;
+  transition: transform 0.3s cubic-bezier(0.65, 0, 0.35, 1), opacity 0.2s;
+  transform-origin: center;
 }
 .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-.nav-toggle.open span:nth-child(2) { opacity: 0; }
+.nav-toggle.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
 .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 .mobile-menu {
-  display: none;
   position: fixed;
   inset: 0;
   background: var(--paper);
   z-index: 200;
   flex-direction: column;
-  padding: 80px 24px 40px;
+  padding: 104px 24px 40px;
   overflow-y: auto;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-12px);
+  transition: opacity 0.3s ease, transform 0.35s cubic-bezier(0.65, 0, 0.35, 1), visibility 0s linear 0.3s;
+  display: none;
 }
+@media (max-width: 1080px) {
+  .mobile-menu { display: flex; }
+}
+.mobile-menu.open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  transition: opacity 0.3s ease, transform 0.35s cubic-bezier(0.65, 0, 0.35, 1), visibility 0s linear 0s;
+}
+.mobile-menu a,
+.mobile-menu .mobile-section-label {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+}
+.mobile-menu.open a,
+.mobile-menu.open .mobile-section-label {
+  opacity: 1;
+  transform: translateY(0);
+}
+.mobile-menu.open > *:nth-child(1) { transition-delay: 0.08s; }
+.mobile-menu.open > *:nth-child(2) { transition-delay: 0.12s; }
+.mobile-menu.open > *:nth-child(3) { transition-delay: 0.16s; }
+.mobile-menu.open > *:nth-child(4) { transition-delay: 0.20s; }
+.mobile-menu.open > *:nth-child(5) { transition-delay: 0.24s; }
+.mobile-menu.open > *:nth-child(6) { transition-delay: 0.28s; }
+.mobile-menu.open > *:nth-child(7) { transition-delay: 0.32s; }
+.mobile-menu.open > *:nth-child(8) { transition-delay: 0.36s; }
+.mobile-menu.open > *:nth-child(9) { transition-delay: 0.40s; }
+.mobile-menu.open > *:nth-child(10) { transition-delay: 0.44s; }
+
 .mobile-menu a {
   font-family: 'Oswald', sans-serif;
   font-size: 30px;
@@ -1020,45 +1061,54 @@ footer {
   color: var(--ink);
   padding: 16px 0;
   border-bottom: 1px solid var(--rule);
+  letter-spacing: -0.005em;
 }
+.mobile-menu a:hover { color: var(--green-deep); }
 .mobile-menu a.mobile-sub {
-  font-size: 20px;
-  padding: 10px 0 10px 18px;
-  font-weight: 400;
-  color: var(--ink-soft);
+  font-family: 'Oswald', sans-serif;
+  font-size: 30px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: -0.005em;
+  color: var(--ink);
+  padding: 16px 0 16px 28px;
   border-bottom: 1px solid var(--rule);
+  position: relative;
 }
+.mobile-menu a.mobile-sub:before {
+  content: '';
+  position: absolute;
+  left: 0; top: 50%;
+  width: 12px; height: 2px;
+  background: var(--green-deep);
+  transform: translateY(-50%);
+  transition: width 0.25s;
+}
+.mobile-menu a.mobile-sub:hover:before { width: 18px; }
 .mobile-menu a.mobile-sub:hover { color: var(--green-deep); }
 .mobile-section-label {
-  font-family: 'DM Mono', monospace;
-  font-size: 12px;
-  letter-spacing: 0.15em;
+  font-family: 'Oswald', sans-serif;
+  font-size: 30px;
+  font-weight: 500;
+  letter-spacing: -0.005em;
   text-transform: uppercase;
-  color: var(--green-deep);
-  padding: 18px 0 8px;
+  color: var(--ink);
+  padding: 16px 0;
   border-bottom: 1px solid var(--rule);
 }
 .mobile-menu a:last-child {
-  margin-top: 24px;
+  margin-top: 28px;
   background: var(--ink);
   color: var(--paper);
   text-align: center;
   border-bottom: none;
-  padding: 18px;
+  padding: 20px;
   font-family: 'DM Mono', monospace;
   font-size: 14px;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
+  transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.65, 0, 0.35, 1), background 0.2s;
 }
-.mobile-menu-close {
-  position: absolute;
-  top: 18px; right: 18px;
-  width: 42px; height: 42px;
-  background: none;
-  border: 2px solid var(--ink);
-  cursor: pointer;
-  font-size: 20px;
-  color: var(--ink);
-}
+.mobile-menu a:last-child:hover { background: var(--green-deep); color: var(--ink); }
 
 @media (max-width: 1100px) {
   .hero-stats { grid-template-columns: repeat(2, 1fr); }
@@ -1083,13 +1133,21 @@ footer {
   .foot-grid { grid-template-columns: 1fr 1fr; }
 }
 
-@media (max-width: 900px) {
+/* Mobile nav kicks in earlier so desktop items don't wrap */
+@media (max-width: 1080px) {
   nav.main { padding: 14px 18px; gap: 0; grid-template-columns: auto 1fr; }
   nav.main .nav-center { display: none; }
   nav.main .nav-right { display: contents; }
   nav.main .nav-right .book-btn { display: none; }
-  .nav-toggle { display: flex !important; justify-self: end; }
-  .mobile-menu.open { display: flex !important; }
+  .nav-toggle {
+    display: flex !important;
+    position: fixed;
+    top: 14px;
+    right: 18px;
+  }
+}
+
+@media (max-width: 900px) {
   .hero { padding: 40px 18px 60px; }
   .hero-title { margin-bottom: 36px; }
   .hero-logo { height: 48px; margin-bottom: 22px; }
@@ -1483,11 +1541,11 @@ footer {
     <a href="index.html#services">Services</a>
     <a href="index.html#about">About</a>
     <a href="index.html#locations">Locations</a>
-    <a href="index.html#pricing">Pricing</a>
+    <a href="pricing.html">Pricing</a>
   </div>
   <div class="nav-right">
     <a href="#book" class="book-btn">Book Now</a>
-    <button class="nav-toggle" aria-label="Open menu" onclick="document.querySelector('.mobile-menu').classList.add('open'); this.classList.add('open')">
+    <button class="nav-toggle" aria-label="Toggle menu" onclick="document.querySelector('.mobile-menu').classList.toggle('open'); this.classList.toggle('open')">
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -1771,7 +1829,7 @@ footer {
       <h5>Care</h5>
       <a href="index.html#services">Services</a>
       <a href="#serve">Who We Serve</a>
-      <a href="index.html#pricing">Pricing</a>
+      <a href="pricing.html">Pricing</a>
     </div>
     <div>
       <h5>Visit</h5>
@@ -1795,7 +1853,6 @@ footer {
 
 <!-- MOBILE MENU -->
 <div class="mobile-menu">
-  <button class="mobile-menu-close" aria-label="Close menu" onclick="document.querySelector('.mobile-menu').classList.remove('open'); document.querySelector('.nav-toggle').classList.remove('open')">✕</button>
   <div class="mobile-section-label">Who We Serve</div>
   <a href="athletes.html" class="mobile-sub">Athletes</a>
   <a href="parents-coaches.html" class="mobile-sub">Parents &amp; Coaches</a>
@@ -1804,7 +1861,7 @@ footer {
   <a href="index.html#services" onclick="document.querySelector('.mobile-menu').classList.remove('open'); document.querySelector('.nav-toggle').classList.remove('open')">Services</a>
   <a href="index.html#about" onclick="document.querySelector('.mobile-menu').classList.remove('open'); document.querySelector('.nav-toggle').classList.remove('open')">About</a>
   <a href="index.html#locations" onclick="document.querySelector('.mobile-menu').classList.remove('open'); document.querySelector('.nav-toggle').classList.remove('open')">Locations</a>
-  <a href="index.html#pricing" onclick="document.querySelector('.mobile-menu').classList.remove('open'); document.querySelector('.nav-toggle').classList.remove('open')">Pricing</a>
+  <a href="pricing.html" onclick="document.querySelector('.mobile-menu').classList.remove('open'); document.querySelector('.nav-toggle').classList.remove('open')">Pricing</a>
   <a href="#book">Book Now</a>
 </div>
 
