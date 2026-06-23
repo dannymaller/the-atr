@@ -189,12 +189,6 @@ nav.main .nav-center .nav-dropdown-menu a:hover {
 .hero-title {
   margin-bottom: 60px;
 }
-.hero-logo {
-  display: block;
-  height: 64px;
-  width: auto;
-  margin-bottom: 32px;
-}
 .hero-title h1 {
   font-family: 'Oswald', sans-serif;
   font-weight: 500;
@@ -207,7 +201,7 @@ nav.main .nav-center .nav-dropdown-menu a:hover {
 .hero-title h1 .row { display: block; }
 .hero-title h1 .accent { color: var(--green-deep); font-weight: 600; }
 
-/* Hero body — lede + actions */
+/* Hero body - lede + actions */
 .hero-body {
   display: flex;
   flex-direction: column;
@@ -438,7 +432,7 @@ nav.main .nav-center .nav-dropdown-menu a:hover {
 .serve-card .go .arrow { transition: transform 0.3s; }
 .serve-card:hover .go .arrow { transform: translateX(6px); }
 
-/* ========= SERVICES — From iteration 4 ========= */
+/* ========= SERVICES - From iteration 4 ========= */
 .services {
   padding: 130px 32px;
   background: var(--ink);
@@ -588,7 +582,7 @@ nav.main .nav-center .nav-dropdown-menu a:hover {
   margin-bottom: 4px;
 }
 
-/* ========= TEAM — iteration 4 editorial style ========= */
+/* ========= TEAM - iteration 4 editorial style ========= */
 .team { padding: 130px 32px; background: var(--paper); border-top: 2px solid var(--ink); border-bottom: 2px solid var(--ink); }
 .team-intro {
   display: grid;
@@ -860,7 +854,7 @@ nav.main .nav-center .nav-dropdown-menu a:hover {
 .cta .btn.ghost { background: transparent; color: var(--paper); border-color: rgba(245, 241, 232, 0.5); }
 .cta .btn.ghost:hover { background: var(--paper); color: var(--ink); border-color: var(--paper); }
 
-/* Location picker — myofit-style */
+/* Location picker - myofit-style */
 .loc-picker {
   margin-top: 8px;
   max-width: 720px;
@@ -1150,7 +1144,6 @@ footer {
 @media (max-width: 900px) {
   .hero { padding: 40px 18px 60px; }
   .hero-title { margin-bottom: 36px; }
-  .hero-logo { height: 48px; margin-bottom: 22px; }
   .hero-title h1 { font-size: clamp(44px, 12vw, 78px); }
   .hero-body { margin-top: 32px; gap: 24px; }
   .hero-body .lede { font-size: 17px; }
@@ -1518,6 +1511,62 @@ footer {
 .hero.subpage-hero .btn.solid:hover { background: var(--paper); color: var(--ink); border-color: var(--paper); }
 .hero.subpage-hero .btn.ghost { background: transparent; color: var(--paper); border-color: rgba(245,241,232,0.5); }
 .hero.subpage-hero .btn.ghost:hover { background: var(--paper); color: var(--ink); border-color: var(--paper); }
+
+/* Blog band on audience pages */
+.blog-band {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 40px;
+  align-items: center;
+  margin-top: 60px;
+  padding: 50px 44px;
+  background: var(--ink);
+  color: var(--paper);
+  border: 2px solid var(--ink);
+  text-decoration: none;
+  transition: background 0.25s;
+}
+.blog-band:hover { background: #1d1d16; }
+.blog-band .sub-label { color: var(--green); }
+.blog-band .sub-label:before { display: none; }
+.blog-band h2 {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 600;
+  font-size: clamp(28px, 3.5vw, 44px);
+  line-height: 0.98;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: var(--paper);
+  margin-bottom: 14px;
+}
+.blog-band h2 .accent { color: var(--green); }
+.blog-band p {
+  font-size: 15.5px;
+  line-height: 1.55;
+  color: rgba(245,241,232,0.8);
+  margin: 0;
+  max-width: 600px;
+}
+.blog-band-cta {
+  font-family: 'DM Mono', monospace;
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: var(--green);
+  padding: 16px 24px;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transition: transform 0.2s;
+}
+.blog-band-cta .arrow { transition: transform 0.25s; }
+.blog-band:hover .blog-band-cta .arrow { transform: translateX(5px); }
+@media (max-width: 900px) {
+  .blog-band { grid-template-columns: 1fr; gap: 24px; padding: 36px 24px; }
+  .blog-band-cta { justify-content: center; }
+}
 </style>
 </head>
 <body>
@@ -1541,6 +1590,7 @@ footer {
     <a href="index.html#services">Services</a>
     <a href="index.html#about">About</a>
     <a href="index.html#locations">Locations</a>
+    <a href="blog.html">Resources</a>
     <a href="pricing.html">Pricing</a>
   </div>
   <div class="nav-right">
@@ -1612,6 +1662,15 @@ footer {
       <a href="tel:5159645000" class="sub-cta">Schedule an evaluation <span class="arrow">&rarr;</span></a>
     </div>
   </div>
+
+  <a href="blog.html?filter=parents-coaches" class="blog-band">
+    <div class="blog-band-text">
+      <div class="sub-label">From the Resource Room</div>
+      <h2>Articles, guides, and webinars <span class="accent">for families.</span></h2>
+      <p>Plain-language breakdowns of concussions, heat illness, injury prevention, and more. Written by our staff for parents and coaches.</p>
+    </div>
+    <span class="blog-band-cta">Read More <span class="arrow">&rarr;</span></span>
+  </a>
 </section>
 
 <!-- SERVICES -->
@@ -1809,6 +1868,7 @@ footer {
       <a href="index.html#services">Services</a>
       <a href="#serve">Who We Serve</a>
       <a href="pricing.html">Pricing</a>
+      <a href="blog.html">Resources</a>
     </div>
     <div>
       <h5>Visit</h5>
@@ -1840,6 +1900,7 @@ footer {
   <a href="index.html#services" onclick="document.querySelector('.mobile-menu').classList.remove('open'); document.querySelector('.nav-toggle').classList.remove('open')">Services</a>
   <a href="index.html#about" onclick="document.querySelector('.mobile-menu').classList.remove('open'); document.querySelector('.nav-toggle').classList.remove('open')">About</a>
   <a href="index.html#locations" onclick="document.querySelector('.mobile-menu').classList.remove('open'); document.querySelector('.nav-toggle').classList.remove('open')">Locations</a>
+  <a href="blog.html">Resources</a>
   <a href="pricing.html" onclick="document.querySelector('.mobile-menu').classList.remove('open'); document.querySelector('.nav-toggle').classList.remove('open')">Pricing</a>
   <a href="#book">Book Now</a>
 </div>
